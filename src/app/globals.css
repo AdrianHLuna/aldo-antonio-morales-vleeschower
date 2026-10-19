@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/*
+ * Dr. Aldo Antonio Morales Vleeschower — Geriatría, Tuxtla Gutiérrez.
+ * Dirección de diseño "Serenidad Geriátrica" (estructura/ritmo/animación
+ * originados vía Google Stitch, ver .agents/rules/registro-disenos.md y
+ * AGENTS.md §1.2 en el repo raíz). Paleta y tipografía actualizadas
+ * 2026-10-19 con la guía de marca real del doctor (HEX exactos extraídos
+ * del logotipo real, que se incorporará más adelante): azul marino, dorado/
+ * bronce y gris plata — sustituye la paleta terracota/salvia/crema
+ * PROVISIONAL usada mientras no existía material de marca (AGENTS.md §5,
+ * "una sola combinación real cuando llega, no inventar una alternativa").
+ */
+:root {
+  --color-ink: #1c2733; /* texto principal, carbón con tinte azul marino */
+  --color-ink-soft: #5a6069; /* texto secundario, gris pizarra */
+  --color-navy: #163354; /* azul marino de marca — HEX exacto del logo (letras "A"/"M", nombre, líneas) */
+  --color-navy-dark: #0f2540; /* hover/activo */
+  --color-gold: #b48a43; /* dorado/bronce de marca — HEX exacto (silueta, mano, especialidad) */
+  --color-gold-dark: #8f6c34;
+  --color-silver: #8e8e8e; /* gris plata de marca — HEX exacto (línea curva, apellidos) */
+  --color-surface: #ffffff;
+  --color-surface-soft: #f4f4f3; /* gris muy claro, agrupaciones secundarias */
+  --color-line: #dcdcdb; /* bordes/divisores */
+
+  --background: var(--color-surface);
+  --foreground: var(--color-ink);
+
+  --shadow-warm: 0 8px 24px -4px rgba(22, 51, 84, 0.1), 0 2px 6px -1px rgba(22, 51, 84, 0.06);
+  --shadow-warm-lg: 0 20px 36px -8px rgba(22, 51, 84, 0.16), 0 4px 12px -2px rgba(22, 51, 84, 0.08);
+}
+
+@theme inline {
+  --color-primary: var(--color-navy);
+  --color-primary-foreground: #ffffff;
+  --color-accent: var(--color-gold);
+  --color-accent-foreground: #ffffff;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--color-surface-soft);
+  --color-muted-foreground: var(--color-ink-soft);
+  --color-border: var(--color-line);
+  --font-sans: var(--font-montserrat);
+  --font-heading: var(--font-montserrat);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-size: 1.0625rem; /* 17px mínimo para texto clínico, pedido por el sistema de diseño */
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Firma serif de marca — SOLO para el apellido del doctor ("Morales
+ * Vleeschower"), tal como aparece en el logotipo real (serif con contraste
+ * ligero entre trazos, vs. el sans-serif geométrico del nombre/especialidad).
+ * Nunca para bloques de texto largo. */
+.font-surname {
+  font-family: var(--font-garamond), Georgia, serif;
+}
+
+/* Nunca justificar texto largo, mantener alineación izquierda estable
+ * (directriz de composición del sistema de diseño, accesibilidad lectora). */
+
+.arch-frame {
+  border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
+}
+
+.eyebrow-serena {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Franja de credenciales del Header — mismo tratamiento tipográfico que
+ * .eyebrow-serena pero SIN mayúsculas forzadas: "Céd Prof: NNNNNNNN
+ * (SIGLAS)" debe verse tal cual, nunca en mayúsculas ni minúsculas totales
+ * (AGENTS.md §3). No reusar .eyebrow-serena para texto de cédulas. */
+.credentials-serena {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Altura táctil mínima de 52px en toda acción interactiva — pedido
+ * explícito del sistema de diseño para destreza motriz menguante. */
+.tap-target {
+  min-height: 52px;
+}
+
+.image-fallback-serena {
+  background: linear-gradient(160deg, var(--color-surface-soft) 0%, #e4e4e2 100%);
+  color: var(--color-ink-soft);
+}
