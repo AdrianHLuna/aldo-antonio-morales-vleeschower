@@ -32,13 +32,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: baseUrl, lastModified: FALLBACK_DATE, priority: 1.0 },
+    { url: `${baseUrl}/about`, lastModified: FALLBACK_DATE, priority: 0.9 },
     { url: `${baseUrl}/enfermedades`, lastModified: FALLBACK_DATE, priority: 0.9 },
     { url: `${baseUrl}/servicios`, lastModified: FALLBACK_DATE, priority: 0.8 },
     { url: `${baseUrl}/sintomas`, lastModified: FALLBACK_DATE, priority: 0.7 },
     ...diseaseUrls,
     ...serviceUrls,
     ...symptomUrls,
-    { url: `${baseUrl}/contacto`, lastModified: FALLBACK_DATE, priority: 0.5 },
-    { url: `${baseUrl}/aviso-de-privacidad`, lastModified: FALLBACK_DATE, priority: 0.3 },
+    // "/contact" y "/privacy" son alias en inglés que canonicalizan a estas
+    // URLs (ver src/app/contact/page.tsx y src/app/privacy/page.tsx) — el
+    // sitemap solo debe listar la URL canónica de cada página.
+    { url: `${baseUrl}/contacto`, lastModified: FALLBACK_DATE, priority: 0.6 },
+    { url: `${baseUrl}/aviso-de-privacidad`, lastModified: FALLBACK_DATE, priority: 0.4 },
+    { url: `${baseUrl}/api`, lastModified: FALLBACK_DATE, priority: 0.5 },
   ];
 }

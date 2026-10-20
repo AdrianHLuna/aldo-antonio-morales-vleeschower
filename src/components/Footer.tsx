@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import Image from "next/image";
 import { doctor } from "@/data";
 
@@ -22,24 +23,30 @@ export default function Footer() {
         <div>
           <p className="eyebrow-serena text-[var(--color-gold)]">Especialidades</p>
           <ul className="mt-3 space-y-2">
-            <li><Link href="/enfermedades" className="hover:text-[var(--color-gold)]">Áreas de atención</Link></li>
-            <li><Link href="/servicios" className="hover:text-[var(--color-gold)]">Servicios</Link></li>
+            <li><Link href={"/enfermedades" as Route} className="hover:text-[var(--color-gold)]">Áreas de atención</Link></li>
+            <li><Link href={"/servicios" as Route} className="hover:text-[var(--color-gold)]">Servicios</Link></li>
           </ul>
         </div>
 
         <div>
           <p className="eyebrow-serena text-[var(--color-gold)]">Para Familiares</p>
           <ul className="mt-3 space-y-2">
-            <li><Link href="/sintomas" className="hover:text-[var(--color-gold)]">Guía de señales</Link></li>
-            <li><Link href="/contacto" className="hover:text-[var(--color-gold)]">Solicitar consulta</Link></li>
-            <li><Link href="/aviso-de-privacidad" className="hover:text-[var(--color-gold)]">Aviso de privacidad</Link></li>
+            <li><Link href={"/about" as Route} className="hover:text-[var(--color-gold)]">Sobre el Doctor</Link></li>
+            <li><Link href={"/sintomas" as Route} className="hover:text-[var(--color-gold)]">Guía de señales</Link></li>
+            <li><Link href={"/contact" as Route} className="hover:text-[var(--color-gold)]">Solicitar consulta</Link></li>
+            <li><Link href={"/privacy" as Route} className="hover:text-[var(--color-gold)]">Aviso de privacidad</Link></li>
           </ul>
         </div>
 
         <div>
-          <p className="eyebrow-serena text-[var(--color-gold)]">Consultorio</p>
+          <p className="eyebrow-serena text-[var(--color-gold)]">Consultorio y Agentes</p>
           <p className="mt-3">{doctor.city}, {doctor.state}, {doctor.country}.</p>
           <p className="mt-1">{doctor.schedule}</p>
+          <div className="mt-3 flex flex-wrap gap-2 text-xs">
+            <Link href={"/api" as Route} className="text-[var(--color-navy)] underline hover:text-[var(--color-gold)]">Agentes & API</Link>
+            <span className="text-[var(--color-line)]">·</span>
+            <a href="/llms.txt" className="text-[var(--color-navy)] underline hover:text-[var(--color-gold)]">llms.txt</a>
+          </div>
         </div>
       </div>
 

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "validate": "tsx scripts/validate-graph.ts",
+    "test:agentic": "tsx scripts/verify-agent-readiness.ts",
     "prebuild": "npm run validate"
   },
   "dependencies": {

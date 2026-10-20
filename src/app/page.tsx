@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import type { Route } from "next";
 import { ArrowRight, Phone, MessageCircle, MapPin, HeartPulse, CheckCircle2 } from "lucide-react";
@@ -7,6 +8,34 @@ import { formatCredentials } from "@/lib/credentials";
 import StructuredData from "@/components/StructuredData";
 import DoctorPortrait from "@/components/DoctorPortrait";
 import EntityCard from "@/components/EntityCard";
+
+export const metadata: Metadata = {
+  title: "Dr. Aldo Antonio Morales Vleeschower — Geriatría y Medicina Interna en Tuxtla Gutiérrez",
+  description: `Dr. Aldo Antonio Morales Vleeschower, médico internista y geriatra en Tuxtla Gutiérrez, Chiapas. Consulta especializada en valoración geriátrica integral, control de hipertensión, diabetes, demencia y consulta a domicilio.`,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Dr. Aldo Antonio Morales Vleeschower — Geriatría y Medicina Interna en Tuxtla Gutiérrez",
+    description: "Consulta médica especializada en geriatría y medicina interna en Tuxtla Gutiérrez, Chiapas. Valoración geriátrica integral y atención al adulto mayor.",
+    url: "/",
+    siteName: "Dr. Aldo Antonio Morales Vleeschower",
+    locale: "es_MX",
+    type: "website",
+    images: [
+      {
+        url: "/logo-icon.png",
+        width: 1200,
+        height: 630,
+        alt: "Dr. Aldo Antonio Morales Vleeschower — Geriatría y Medicina Interna",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 const PREVIEW_COUNT = 6;
 
@@ -26,14 +55,18 @@ export default function HomePage() {
       <section className="flex min-h-screen flex-col justify-center border-b border-[var(--color-line)] bg-[var(--color-surface-soft)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <span className="eyebrow-serena inline-block border border-[var(--color-navy)]/40 bg-white px-3 py-1.5 text-[var(--color-navy)]">
-            {doctor.city}, {doctor.state} · {doctor.specialty}
+            {doctor.city}, {doctor.state} · {doctor.specialistTitle || doctor.specialty}
           </span>
           <h1 className="mt-5 font-heading text-3xl leading-tight text-[var(--color-ink)] sm:text-4xl md:text-5xl">
+            <span className="block font-heading text-xl text-[var(--color-navy)] mb-2 sm:text-2xl font-semibold tracking-tight">
+              Dr. Aldo Antonio Morales Vleeschower · Geriatría y Medicina Interna
+            </span>
             Cuidar la plenitud de los años con dignidad, paciencia y ciencia médica.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base text-[var(--color-ink-soft)]">
-            Medicina interna con subespecialidad en geriatría: manejo integral de enfermedades crónicas y
-            acompañamiento al adulto mayor y su familia en {doctor.city}.
+            Medicina interna con subespecialidad en geriatría en {doctor.city}: valoración geriátrica integral,
+            manejo multidisciplinario de enfermedades crónicas, acompañamiento familiar y consulta a domicilio
+            con el Dr. Aldo Antonio Morales Vleeschower.
           </p>
         </div>
 

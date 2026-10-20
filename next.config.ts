@@ -39,6 +39,10 @@ const securityHeaders = [
     value: "camera=(), microphone=(), geolocation=()",
   },
   {
+    key: "Vary",
+    value: "Accept",
+  },
+  {
     key: "Content-Security-Policy",
     value:
       `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.googletagmanager.com https://www.google.com https://*.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://stats.g.doubleclick.net https://tagassistant.google.com; frame-src https://www.googletagmanager.com https://www.google.com https://www.youtube-nocookie.com https://bid.g.doubleclick.net https://td.doubleclick.net https://tagassistant.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://tagassistant.google.com`,
