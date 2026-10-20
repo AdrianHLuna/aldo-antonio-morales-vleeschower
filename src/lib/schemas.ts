@@ -103,6 +103,7 @@ export function generateHomeSchemas() {
 
 export function generateDiseaseSchemas(disease: MedicalCondition) {
   const pageUrl = `${baseUrl}/enfermedades/${disease.slug}`;
+  const imageUrl = disease.image ? `${baseUrl}${disease.image}` : undefined;
 
   const condition = {
     "@type": "MedicalCondition",
@@ -110,6 +111,7 @@ export function generateDiseaseSchemas(disease: MedicalCondition) {
     name: disease.name,
     alternateName: [disease.technicalName, ...(disease.colloquialNames ?? [])].filter(Boolean),
     description: disease.description,
+    image: imageUrl,
     signOrSymptom: [
       ...disease.symptoms.map((s) => ({ "@type": "MedicalSignOrSymptom", name: s })),
       ...refSymptoms(disease.relatedSymptoms),
@@ -134,6 +136,7 @@ export function generateDiseaseSchemas(disease: MedicalCondition) {
     inLanguage: "es-MX",
     isPartOf: { "@id": IDS.website },
     about: { "@id": IDS.condition(disease.slug) },
+    ...(imageUrl ? { primaryImageOfPage: imageUrl } : {}),
     ...(disease.lastReviewed ? { lastReviewed: disease.lastReviewed } : {}),
     reviewedBy: { "@id": IDS.physician },
   };
@@ -152,12 +155,14 @@ export function generateDiseaseSchemas(disease: MedicalCondition) {
 
 export function generateServiceSchemas(service: MedicalService) {
   const pageUrl = `${baseUrl}/servicios/${service.slug}`;
+  const imageUrl = service.image ? `${baseUrl}${service.image}` : undefined;
 
   const procedure = {
     "@type": "MedicalProcedure",
     "@id": IDS.procedure(service.slug),
     name: service.name,
     description: service.longDescription,
+    image: imageUrl,
     procedureType: service.type === "ambulatorio" ? "NoninvasiveProcedure" : "SurgicalProcedure",
     howPerformed: service.description,
     preparation: service.anesthesiaType ? `Tipo de anestesia: ${service.anesthesiaType}` : undefined,
@@ -172,6 +177,7 @@ export function generateServiceSchemas(service: MedicalService) {
     inLanguage: "es-MX",
     isPartOf: { "@id": IDS.website },
     about: { "@id": IDS.procedure(service.slug) },
+    ...(imageUrl ? { primaryImageOfPage: imageUrl } : {}),
     ...(service.lastReviewed ? { lastReviewed: service.lastReviewed } : {}),
     reviewedBy: { "@id": IDS.physician },
   };
@@ -195,6 +201,7 @@ export function generateServiceSchemas(service: MedicalService) {
 
 export function generateSymptomSchemas(symptom: Symptom) {
   const pageUrl = `${baseUrl}/sintomas/${symptom.slug}`;
+  const imageUrl = symptom.image ? `${baseUrl}${symptom.image}` : undefined;
 
   const signOrSymptom = {
     "@type": "MedicalSignOrSymptom",
@@ -202,6 +209,7 @@ export function generateSymptomSchemas(symptom: Symptom) {
     name: symptom.name,
     alternateName: symptom.colloquialNames ?? [],
     description: symptom.description,
+    image: imageUrl,
     possibleCause: refConditions(symptom.relatedConditions),
   };
 
@@ -213,6 +221,7 @@ export function generateSymptomSchemas(symptom: Symptom) {
     inLanguage: "es-MX",
     isPartOf: { "@id": IDS.website },
     about: { "@id": IDS.symptom(symptom.slug) },
+    ...(imageUrl ? { primaryImageOfPage: imageUrl } : {}),
     ...(symptom.lastReviewed ? { lastReviewed: symptom.lastReviewed } : {}),
     reviewedBy: { "@id": IDS.physician },
   };
