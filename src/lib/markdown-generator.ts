@@ -42,8 +42,9 @@ export function getHomeMarkdown(): string {
 
 - **Médico Especialista**: ${doctor.title} ${doctor.name}
 - **Especialidad**: ${doctor.specialty} (Medicina Interna y Geriatría)
-- **Cédula Profesional**: ${doctor.cedula}
-- **Cédula de Especialidad**: ${doctor.cedulaEspecialidad || "En trámite/registro"}
+- **Cédula Profesional**: ${doctor.cedula}${doctor.cedulaInstitucion ? ` (${doctor.cedulaInstitucion})` : ""}
+- **Cédula de Especialidad**: ${doctor.cedulaEspecialidad ? `${doctor.cedulaEspecialidad}${doctor.cedulaEspecialidadInstitucion ? ` (${doctor.cedulaEspecialidadInstitucion})` : ""}` : "En trámite/registro"}
+${doctor.cedulaSubespecialidad ? `- **Cédula de Subespecialidad**: ${doctor.cedulaSubespecialidad}${doctor.cedulaSubespecialidadInstitucion ? ` (${doctor.cedulaSubespecialidadInstitucion})` : ""}` : ""}
 - **Dirección**: ${doctor.address}, ${doctor.city}, ${doctor.state}, México
 - **Horario de Atención**: ${doctor.schedule}
 - **Honorarios Consulta**: $${doctor.consultationPrice} MXN (primera vez y seguimiento)
@@ -121,8 +122,9 @@ export function getAboutMarkdown(): string {
 ## Formación Académica y Cédulas
 
 ${doctor.education.map((e) => `- **${e.degree}**: ${e.institution}${e.year ? ` (${e.year})` : ""}`).join("\n")}
-- **Cédula Profesional**: ${doctor.cedula}
-${doctor.cedulaEspecialidad ? `- **Cédula de Especialidad**: ${doctor.cedulaEspecialidad}` : ""}
+- **Cédula Profesional**: ${doctor.cedula}${doctor.cedulaInstitucion ? ` (${doctor.cedulaInstitucion})` : ""}
+${doctor.cedulaEspecialidad ? `- **Cédula de Especialidad**: ${doctor.cedulaEspecialidad}${doctor.cedulaEspecialidadInstitucion ? ` (${doctor.cedulaEspecialidadInstitucion})` : ""}` : ""}
+${doctor.cedulaSubespecialidad ? `- **Cédula de Subespecialidad**: ${doctor.cedulaSubespecialidad}${doctor.cedulaSubespecialidadInstitucion ? ` (${doctor.cedulaSubespecialidadInstitucion})` : ""}` : ""}
 ${doctor.cofepris ? `- **Aviso COFEPRIS**: ${doctor.cofepris}` : ""}
 
 ## Certificaciones y Colegios Médicos

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import Image from "next/image";
 import { doctor } from "@/data";
+import { formatCredentials } from "@/lib/credentials";
 
 export default function Footer() {
   return (
@@ -53,6 +54,9 @@ export default function Footer() {
       <div className="mx-auto mt-10 max-w-6xl border-t border-[var(--color-line)] pt-6 text-xs">
         <p>
           © {new Date().getFullYear()} {doctor.title} {doctor.name}. Todos los derechos reservados.
+        </p>
+        <p className="mt-1.5 font-mono text-[11px] text-[var(--color-ink-soft)]">
+          {formatCredentials(doctor)}
         </p>
         <p className="mt-2 text-[var(--color-ink-soft)]/80">
           La información de este sitio es orientativa y educativa; no sustituye una consulta médica. Ante una

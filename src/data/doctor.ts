@@ -4,20 +4,22 @@ import type { DoctorProfile } from "@/types/schema";
 // entregado: correo, logo/paleta de marca, fotos, ficha de Google, widget de
 // agenda y testimonios quedan PENDIENTE — no inventados.
 //
-// Nota de las cédulas: el usuario entregó el mismo número (1234567) para
-// Céd. Prof. y Céd. Esp., ambas de la UNAM — se usa tal cual lo dado, pero
-// conviene confirmarlo con el doctor antes de publicar (un número idéntico
-// para dos cédulas distintas es inusual).
+// Cédulas profesionales e instituciones oficiales del médico:
+// - Licenciatura (Médico Cirujano): Céd. Prof. 4840706 (IESCH)
+// - Especialidad en Medicina Interna: Céd. Esp. 7047015 (UNACH)
+// - Subespecialidad en Geriatría: Céd. Subesp. 14798007 (UNAM)
 export const doctor: DoctorProfile = {
   name: "Aldo Antonio Morales Vleeschower",
   title: "Dr.",
   specialty: "Medicina Interna",
   subspecialty: "Geriatría",
   specialistTitle: "Internista Geriatra",
-  cedula: "1234567",
-  cedulaInstitucion: "UNAM",
-  cedulaEspecialidad: "1234567",
-  cedulaEspecialidadInstitucion: "UNAM",
+  cedula: "4840706",
+  cedulaInstitucion: "IESCH",
+  cedulaEspecialidad: "7047015",
+  cedulaEspecialidadInstitucion: "UNACH",
+  cedulaSubespecialidad: "14798007",
+  cedulaSubespecialidadInstitucion: "UNAM",
   // Sin folio COFEPRIS confirmado todavía — "En trámite" se muestra siempre
   // junto a las cédulas en el Header (instrucción explícita del usuario,
   // nunca omitir este campo mientras no haya folio real).
@@ -54,8 +56,9 @@ export const doctor: DoctorProfile = {
     { name: "Soporte Vital Básico (BLS)", institution: "American Heart Association" },
   ],
   education: [
-    { degree: "Médico Cirujano", institution: "Universidad Nacional Autónoma de México (UNAM)" },
-    { degree: "Especialidad en Medicina Interna", institution: "Universidad Nacional Autónoma de México (UNAM)" },
+    { degree: "Médico Cirujano", institution: "Instituto de Estudios Superiores de Chiapas (IESCH)" },
+    { degree: "Especialidad en Medicina Interna", institution: "Universidad Autónoma de Chiapas (UNACH)" },
+    { degree: "Subespecialidad en Geriatría", institution: "Universidad Nacional Autónoma de México (UNAM)" },
   ],
   sameAs: ["https://www.facebook.com/geriatratuxtla/"],
 };

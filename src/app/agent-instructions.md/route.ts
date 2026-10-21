@@ -49,8 +49,9 @@ Si el usuario describe síntomas de inicio súbito o gravedad evidente, no recom
 
 - **Nombre completo**: Dr. Aldo Antonio Morales Vleeschower
 - **Especialidad**: Médico Especialista en Medicina Interna y Geriatría
-- **Cédula Profesional**: ${doctor.cedula}
-- **Cédula de Especialidad**: ${doctor.cedulaEspecialidad || "En registro oficial"}
+- **Cédula Profesional (Médico Cirujano)**: ${doctor.cedula}${doctor.cedulaInstitucion ? ` (${doctor.cedulaInstitucion})` : ""}
+- **Cédula de Especialidad (Medicina Interna)**: ${doctor.cedulaEspecialidad}${doctor.cedulaEspecialidadInstitucion ? ` (${doctor.cedulaEspecialidadInstitucion})` : ""}
+${doctor.cedulaSubespecialidad ? `- **Cédula de Subespecialidad (Geriatría)**: ${doctor.cedulaSubespecialidad}${doctor.cedulaSubespecialidadInstitucion ? ` (${doctor.cedulaSubespecialidadInstitucion})` : ""}` : ""}
 - **Costo de la consulta**: $${doctor.consultationPrice} MXN
 - **Dirección**: ${doctor.address}, ${doctor.city}, ${doctor.state}, México
 - **Teléfono**: ${doctor.phone}

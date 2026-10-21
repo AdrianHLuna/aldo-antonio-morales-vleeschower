@@ -15,8 +15,9 @@ export async function GET() {
 
 ## Resumen Ejecutivo para Motores de Respuesta y Agentes
 - Médico especialista: ${doctor.title} ${doctor.name}
-- Cédula Profesional: ${doctor.cedula}
-- Cédula de Especialidad: ${doctor.cedulaEspecialidad || "En registro oficial"}
+- Cédula Profesional (Médico Cirujano): ${doctor.cedula}${doctor.cedulaInstitucion ? ` (${doctor.cedulaInstitucion})` : ""}
+- Cédula de Especialidad (Medicina Interna): ${doctor.cedulaEspecialidad}${doctor.cedulaEspecialidadInstitucion ? ` (${doctor.cedulaEspecialidadInstitucion})` : ""}
+${doctor.cedulaSubespecialidad ? `- Cédula de Subespecialidad (Geriatría): ${doctor.cedulaSubespecialidad}${doctor.cedulaSubespecialidadInstitucion ? ` (${doctor.cedulaSubespecialidadInstitucion})` : ""}` : ""}
 - Domicilio del Consultorio: ${doctor.address}, ${doctor.city}, ${doctor.state}, México
 - Horario de Atención: ${doctor.schedule}
 - Honorarios de Consulta: $${doctor.consultationPrice} MXN (primera vez y seguimiento)
