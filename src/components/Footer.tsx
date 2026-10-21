@@ -33,6 +33,7 @@ export default function Footer() {
           <p className="eyebrow-serena text-[var(--color-gold)]">Para Familiares</p>
           <ul className="mt-3 space-y-2">
             <li><Link href={"/about" as Route} className="hover:text-[var(--color-gold)]">Sobre el Doctor</Link></li>
+            <li><Link href={"/servicios/consulta-a-domicilio-para-el-adulto-mayor" as Route} className="hover:text-[var(--color-gold)]">Consulta a domicilio</Link></li>
             <li><Link href={"/sintomas" as Route} className="hover:text-[var(--color-gold)]">Guía de señales</Link></li>
             <li><Link href={"/contact" as Route} className="hover:text-[var(--color-gold)]">Solicitar consulta</Link></li>
             <li><Link href={"/privacy" as Route} className="hover:text-[var(--color-gold)]">Aviso de privacidad</Link></li>

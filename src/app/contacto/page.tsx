@@ -103,6 +103,9 @@ export default function ContactPage() {
             <p className="mt-1 text-xs text-[var(--color-ink-soft)]">
               Aplica para consulta de primera vez y valoraciones geriátricas subsecuentes en consultorio.
             </p>
+            <p className="mt-1.5 text-xs text-[var(--color-navy)] font-medium">
+              Consulta geriátrica a domicilio: $1,200 MXN (primer cuadro de Tuxtla Gutiérrez).
+            </p>
             <div className="mt-4 border-t border-[var(--color-line)] pt-3">
               <p className="text-xs font-semibold text-[var(--color-ink)]">Formas de pago aceptadas:</p>
               <p className="mt-1 text-xs text-[var(--color-ink-soft)]">{doctor.paymentMethods.join(", ")}.</p>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import type { Route } from "next";
-import { ArrowRight, Phone, MessageCircle, MapPin, HeartPulse, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Phone, MessageCircle, MapPin, HeartPulse, CheckCircle2, Home, Clock, Stethoscope, ShieldCheck } from "lucide-react";
 import { doctor, diseases, services, symptoms } from "@/data";
 import { generateHomeSchemas } from "@/lib/schemas";
 import { formatCredentials } from "@/lib/credentials";
@@ -157,6 +158,143 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── ENFOQUE DESTACADO: CONSULTA GERIÁTRICA A DOMICILIO ─── */}
+      <section id="consulta-a-domicilio" className="border-b border-[var(--color-line)] bg-white px-6 py-16 lg:py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* Columna Izquierda: Tarjeta visual y ficha técnica (5 cols) */}
+            <div className="lg:col-span-5">
+              <div className="overflow-hidden rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-soft)] shadow-[var(--shadow-warm)]">
+                <div className="relative aspect-4/3 w-full sm:aspect-16/10 lg:aspect-4/3">
+                  <Image
+                    src="/servicios/consulta-a-domicilio-para-el-adulto-mayor.jpg"
+                    alt={`Consulta médica geriátrica a domicilio con el ${doctor.title} ${doctor.name}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)]/85 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                    <span className="inline-flex items-center gap-1.5 rounded bg-white/20 px-2.5 py-1 text-xs font-semibold backdrop-blur-md">
+                      <Home className="h-3.5 w-3.5" aria-hidden="true" />
+                      Visita Médica Domiciliaria
+                    </span>
+                    <p className="mt-1 text-xs text-white/95">
+                      Primer cuadro de Tuxtla Gutiérrez, Chiapas
+                    </p>
+                  </div>
+                </div>
+
+                <div className="divide-y divide-[var(--color-line)] bg-white p-5 text-sm">
+                  <div className="flex items-center justify-between py-2.5">
+                    <span className="flex items-center gap-2 text-[var(--color-ink-soft)]">
+                      <Clock className="h-4 w-4 text-[var(--color-navy)]" aria-hidden="true" />
+                      Duración estimada
+                    </span>
+                    <span className="font-semibold text-[var(--color-ink)]">45 a 60 min</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2.5">
+                    <span className="flex items-center gap-2 text-[var(--color-ink-soft)]">
+                      <MapPin className="h-4 w-4 text-[var(--color-navy)]" aria-hidden="true" />
+                      Zona de cobertura
+                    </span>
+                    <span className="font-semibold text-[var(--color-ink)]">Primer cuadro (Tuxtla)</span>
+                  </div>
+                  <div className="flex items-center justify-between py-2.5">
+                    <span className="flex items-center gap-2 text-[var(--color-ink-soft)]">
+                      <Stethoscope className="h-4 w-4 text-[var(--color-navy)]" aria-hidden="true" />
+                      Enfoque
+                    </span>
+                    <span className="font-semibold text-[var(--color-navy)]">Geriatría Integral</span>
+                  </div>
+                  <div className="flex items-center justify-between pt-2.5">
+                    <span className="text-[var(--color-ink-soft)]">Honorarios</span>
+                    <span className="font-heading text-lg font-bold text-[var(--color-navy)]">$1,200 MXN</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Columna Derecha: Explicación médica, valor y llamado a la acción (7 cols) */}
+            <div className="lg:col-span-7">
+              <span className="eyebrow-serena text-[var(--color-gold)]">
+                Atención Médica en la Comodidad del Hogar
+              </span>
+              <h2 className="mt-2 font-heading text-2xl text-[var(--color-ink)] sm:text-3xl md:text-4xl">
+                Consulta Geriátrica a Domicilio en Tuxtla Gutiérrez
+              </h2>
+              <p className="mt-3 text-base text-[var(--color-ink-soft)] leading-relaxed">
+                Para muchos adultos mayores, el traslado físico hasta el consultorio representa dolor, fatiga o riesgo de caídas. Por ello, el {doctor.title} {doctor.name} ofrece atención médica personalizada directamente en el domicilio del paciente dentro del primer cuadro de la ciudad.
+              </p>
+
+              <div className="mt-6 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface-soft)] p-4">
+                  <div className="flex items-center gap-2 text-[var(--color-navy)]">
+                    <ShieldCheck className="h-5 w-5 shrink-0" aria-hidden="true" />
+                    <h3 className="font-semibold text-sm text-[var(--color-ink)]">Sin estrés de traslado</h3>
+                  </div>
+                  <p className="mt-1.5 text-xs text-[var(--color-ink-soft)] leading-relaxed">
+                    Ideal para pacientes con secuelas de EVC, fractura de cadera previa, artrosis severa o movilidad comprometida.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface-soft)] p-4">
+                  <div className="flex items-center gap-2 text-[var(--color-navy)]">
+                    <Home className="h-5 w-5 shrink-0" aria-hidden="true" />
+                    <h3 className="font-semibold text-sm text-[var(--color-ink)]">Evaluación del entorno real</h3>
+                  </div>
+                  <p className="mt-1.5 text-xs text-[var(--color-ink-soft)] leading-relaxed">
+                    Permite identificar riesgos de caídas en pasillos y baños, iluminación y adecuaciones que protejan al paciente.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface-soft)] p-4">
+                  <div className="flex items-center gap-2 text-[var(--color-navy)]">
+                    <Stethoscope className="h-5 w-5 shrink-0" aria-hidden="true" />
+                    <h3 className="font-semibold text-sm text-[var(--color-ink)]">Conciliación de fármacos</h3>
+                  </div>
+                  <p className="mt-1.5 text-xs text-[var(--color-ink-soft)] leading-relaxed">
+                    Revisión directa del botiquín real del paciente para detectar duplicidades, interacciones adversas y polifarmacia.
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface-soft)] p-4">
+                  <div className="flex items-center gap-2 text-[var(--color-navy)]">
+                    <CheckCircle2 className="h-5 w-5 shrink-0" aria-hidden="true" />
+                    <h3 className="font-semibold text-sm text-[var(--color-ink)]">Acompañamiento a la familia</h3>
+                  </div>
+                  <p className="mt-1.5 text-xs text-[var(--color-ink-soft)] leading-relaxed">
+                    Diálogo pausado con cuidadores e hijos para consensuar el plan terapéutico, cuidados diarios y señales de alarma.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href={`https://wa.me/${doctor.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
+                    `Hola, ${doctor.title} ${doctor.name}, quisiera solicitar información para agendar una consulta a domicilio en Tuxtla Gutiérrez.`
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tap-target inline-flex items-center gap-2 bg-[var(--color-navy)] px-5 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[var(--color-navy-dark)]"
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                  Solicitar Consulta a Domicilio
+                </a>
+                <Link
+                  href={"/servicios/consulta-a-domicilio-para-el-adulto-mayor" as Route}
+                  className="tap-target inline-flex items-center gap-1.5 border border-[var(--color-line)] bg-white px-4 text-xs font-semibold text-[var(--color-ink)] hover:border-[var(--color-navy)] hover:text-[var(--color-navy)]"
+                >
+                  Ver detalles del servicio
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── CATÁLOGO DE ENFERMEDADES ─── */}
       <section id="enfermedades" className="border-b border-[var(--color-line)] bg-[var(--color-surface-soft)] px-6 py-16">
         <div className="mx-auto max-w-5xl">
@@ -256,7 +394,12 @@ export default function HomePage() {
               <h2 className="mt-2 font-heading text-3xl text-[var(--color-ink)]">
                 ${doctor.consultationPrice.toLocaleString("es-MX")} <span className="text-lg text-[var(--color-ink-soft)]">MXN</span>
               </h2>
-              <p className="mt-1 text-sm text-[var(--color-ink-soft)]">Consulta de primera vez y seguimiento.</p>
+              <p className="mt-1 text-sm text-[var(--color-ink-soft)]">Consulta de primera vez y seguimiento en consultorio.</p>
+              <div className="mt-3 border-t border-[var(--color-line)] pt-3 text-xs">
+                <span className="font-semibold text-[var(--color-navy)]">Consulta a domicilio:</span>{" "}
+                <span className="text-[var(--color-ink)]">$1,200 MXN</span>{" "}
+                <span className="text-[var(--color-ink-soft)]">(primer cuadro de Tuxtla Gutiérrez).</span>
+              </div>
               {doctor.insurances && (
                 <p className="mt-4 border-t border-[var(--color-line)] pt-4 text-xs text-[var(--color-ink-soft)]">{doctor.insurances.join(", ")}.</p>
               )}
