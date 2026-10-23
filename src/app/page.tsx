@@ -49,53 +49,104 @@ export default function HomePage() {
     <>
       <StructuredData data={generateHomeSchemas()} />
 
-      {/* ─── HERO: texto centrado + panel de foto completo debajo con
-          tarjetas flotantes — dirección "Serenidad Geriátrica" (paleta y
-          estilo de tarjeta tomados de una referencia de diseño, estructura
-          de la página es la estándar del proyecto, AGENTS.md §1.2) ─── */}
-      <section className="flex min-h-screen flex-col justify-center border-b border-[var(--color-line)] bg-[var(--color-surface-soft)] px-6 py-16">
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="eyebrow-serena inline-block border border-[var(--color-navy)]/40 bg-white px-3 py-1.5 text-[var(--color-navy)]">
-            {doctor.city}, {doctor.state} · {doctor.specialistTitle || doctor.specialty}
-          </span>
-          <h1 className="mt-5 font-heading text-3xl leading-tight text-[var(--color-ink)] sm:text-4xl md:text-5xl">
-            <span className="block font-heading text-xl text-[var(--color-navy)] mb-2 sm:text-2xl font-semibold tracking-tight">
-              Dr. Aldo Antonio Morales Vleeschower · Geriatría y Medicina Interna
-            </span>
-            Cuidar la plenitud de los años con dignidad, paciencia y ciencia médica.
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base text-[var(--color-ink-soft)]">
-            Medicina interna con subespecialidad en geriatría en {doctor.city}: valoración geriátrica integral,
-            manejo multidisciplinario de enfermedades crónicas, acompañamiento familiar y consulta a domicilio
-            con el Dr. Aldo Antonio Morales Vleeschower.
-          </p>
-        </div>
+      {/* ─── HERO: 2 Columnas (Texto/CTAs a la izquierda + Retrato vertical 3:4 del Dr. Aldo a la derecha) ─── */}
+      <section className="relative border-b border-[var(--color-line)] bg-[var(--color-surface-soft)] px-6 py-12 md:py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* Columna Izquierda: Información, Autoridad y CTAs */}
+            <div className="lg:col-span-7">
+              <span className="eyebrow-serena inline-block border border-[var(--color-navy)]/40 bg-white px-3 py-1.5 text-[var(--color-navy)] shadow-xs">
+                {doctor.city}, {doctor.state} · {doctor.specialistTitle || doctor.specialty}
+              </span>
 
-        <div className="relative mx-auto mt-10 h-[340px] w-full max-w-5xl overflow-hidden rounded-xl border border-[var(--color-line)] sm:h-[420px]">
-          <DoctorPortrait src="/placeholder-hero.jpg" alt="Acompañamiento geriátrico" className="h-full w-full" priority />
+              <h1 className="mt-5 font-heading text-3xl leading-tight text-[var(--color-ink)] sm:text-4xl md:text-5xl">
+                <span className="block font-heading text-xl text-[var(--color-navy)] mb-2 sm:text-2xl font-semibold tracking-tight">
+                  {doctor.title} {doctor.name} · Geriatría y Medicina Interna
+                </span>
+                Cuidar la plenitud de los años con dignidad, paciencia y ciencia médica.
+              </h1>
 
-          <div className="absolute left-4 top-4 flex items-center gap-2 bg-white/95 px-3 py-2 text-xs font-semibold text-[var(--color-ink)] shadow-[var(--shadow-warm)]">
-            <HeartPulse className="h-4 w-4 text-[var(--color-navy)]" aria-hidden="true" />
-            Más de 20 años de experiencia
-          </div>
+              <p className="mt-5 max-w-2xl text-base text-[var(--color-ink-soft)] sm:text-lg">
+                Medicina interna con subespecialidad en geriatría en {doctor.city}: valoración geriátrica integral,
+                manejo multidisciplinario de enfermedades crónicas, acompañamiento familiar y consulta médica a domicilio
+                con el Dr. Aldo Antonio Morales Vleeschower.
+              </p>
 
-          <div className="absolute inset-x-4 bottom-4 flex flex-wrap gap-2 sm:inset-x-auto sm:right-4">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="tap-target inline-flex items-center justify-center gap-1.5 bg-[var(--color-navy)] px-5 text-xs font-semibold uppercase tracking-wide text-white shadow-[var(--shadow-warm-lg)] hover:bg-[var(--color-navy-dark)]"
-            >
-              <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-              Agendar por WhatsApp
-            </a>
-            <a
-              href={`tel:${doctor.phone}`}
-              className="tap-target inline-flex items-center justify-center gap-1.5 border border-[var(--color-line)] bg-white px-5 text-xs font-semibold text-[var(--color-ink)] shadow-[var(--shadow-warm)] hover:border-[var(--color-navy)]"
-            >
-              <Phone className="h-3.5 w-3.5" aria-hidden="true" />
-              Llamar
-            </a>
+              {/* Botones de Acción (CTAs) */}
+              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tap-target inline-flex items-center justify-center gap-2 bg-[var(--color-navy)] px-6 text-xs font-semibold uppercase tracking-wider text-white shadow-[var(--shadow-warm-lg)] hover:bg-[var(--color-navy-dark)]"
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                  Agendar por WhatsApp
+                </a>
+                <a
+                  href={`tel:${doctor.phone}`}
+                  className="tap-target inline-flex items-center justify-center gap-2 border border-[var(--color-line)] bg-white px-6 text-xs font-semibold text-[var(--color-ink)] shadow-[var(--shadow-warm)] hover:border-[var(--color-navy)] hover:text-[var(--color-navy)]"
+                >
+                  <Phone className="h-4 w-4 text-[var(--color-navy)]" aria-hidden="true" />
+                  Llamar: {doctor.phone}
+                </a>
+              </div>
+
+              {/* Credenciales y Garantías de Confianza */}
+              <div className="mt-8 border-t border-[var(--color-line)] pt-6">
+                <p className="credentials-serena text-xs text-[var(--color-ink-soft)] font-medium">
+                  {formatCredentials(doctor)}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[var(--color-ink)]/85">
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[var(--color-gold)] shrink-0" aria-hidden="true" />
+                    Consulta presencial y a domicilio
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[var(--color-gold)] shrink-0" aria-hidden="true" />
+                    Atención centrada en el adulto mayor
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-[var(--color-gold)] shrink-0" aria-hidden="true" />
+                    COFEPRIS: {doctor.cofepris}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Columna Derecha: Retrato Vertical Proporcional del Doctor */}
+            <div className="lg:col-span-5">
+              <div className="relative mx-auto w-full max-w-[380px] lg:max-w-none">
+                {/* Marco de Retrato con soporte vertical 3:4 */}
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[var(--shadow-warm-lg)]">
+                  <DoctorPortrait
+                    src={doctor.heroPhoto || "/hero.jpeg"}
+                    alt={`${doctor.title} ${doctor.name} - ${doctor.specialistTitle || doctor.specialty}`}
+                    className="h-full w-full"
+                    imgClassName="object-cover object-[center_top]"
+                    priority
+                  />
+
+                  {/* Insignia Flotante Superior: Años de experiencia */}
+                  <div className="absolute left-3 top-3 flex items-center gap-2 bg-white/95 px-3 py-2 text-xs font-semibold text-[var(--color-ink)] shadow-[var(--shadow-warm)] border border-[var(--color-line)]">
+                    <HeartPulse className="h-4 w-4 text-[var(--color-navy)]" aria-hidden="true" />
+                    Más de 20 años de experiencia
+                  </div>
+
+                  {/* Insignia Flotante Inferior: Certificaciones */}
+                  <div className="absolute inset-x-3 bottom-3 flex items-center gap-2 bg-white/95 px-3 py-2 text-xs font-semibold text-[var(--color-ink)] shadow-[var(--shadow-warm)] border border-[var(--color-line)]">
+                    <ShieldCheck className="h-4 w-4 text-[var(--color-gold)] shrink-0" aria-hidden="true" />
+                    <span className="leading-tight">Consejos Mexicanos de Medicina Interna y Geriatría</span>
+                  </div>
+                </div>
+
+                {/* Sombra sutil decorativa de marca */}
+                <div
+                  className="pointer-events-none absolute -bottom-3 -right-3 -z-10 h-full w-full rounded-2xl border border-[var(--color-gold)]/40 bg-[var(--color-navy)]/5"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -118,8 +169,14 @@ export default function HomePage() {
       <section className="border-b border-[var(--color-line)] bg-white px-6 py-16">
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_1fr]">
           <div>
-            <div className="arch-frame relative h-80 w-full overflow-hidden border border-[var(--color-line)] bg-white">
-              <DoctorPortrait src={doctor.photo} alt={`${doctor.title} ${doctor.name}`} className="h-full w-full" priority />
+            <div className="arch-frame relative h-80 w-full overflow-hidden border border-[var(--color-line)] bg-white shadow-[var(--shadow-warm)]">
+              <DoctorPortrait
+                src={doctor.photo}
+                alt={`${doctor.title} ${doctor.name}`}
+                className="h-full w-full"
+                imgClassName="object-cover object-[center_top]"
+                priority
+              />
             </div>
           </div>
           <div>

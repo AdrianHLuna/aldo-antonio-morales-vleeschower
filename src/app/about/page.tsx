@@ -43,7 +43,13 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[320px_1fr]">
           <div>
             <div className="arch-frame relative h-96 w-full overflow-hidden border border-[var(--color-line)] bg-white shadow-[var(--shadow-warm)]">
-              <DoctorPortrait src={doctor.photo} alt={`${doctor.title} ${doctor.name}`} className="h-full w-full" priority />
+              <DoctorPortrait
+                src={doctor.photo}
+                alt={`${doctor.title} ${doctor.name}`}
+                className="h-full w-full"
+                imgClassName="object-cover object-[center_top]"
+                priority
+              />
             </div>
 
             <div className="mt-6 border border-[var(--color-line)] bg-[var(--color-surface-soft)] p-6 text-sm">

@@ -8,15 +8,23 @@ interface DoctorPortraitProps {
   src: string;
   alt: string;
   className?: string;
+  imgClassName?: string;
+  sizes?: string;
   priority?: boolean;
 }
 
 /**
- * Retrato del doctor con fallback cálido — no hay foto real todavía
- * (PENDIENTE). Componente cliente dedicado: un `onError` inline en un
- * Server Component rompe el build en Next 16.
+ * Retrato del doctor con fallback cálido y soporte para encuadre personalizado
+ * (object-position / imgClassName). Componente cliente dedicado para Next 16.
  */
-export default function DoctorPortrait({ src, alt, className = "", priority }: DoctorPortraitProps) {
+export default function DoctorPortrait({
+  src,
+  alt,
+  className = "",
+  imgClassName = "object-cover object-center",
+  sizes = "(max-width: 768px) 100vw, 50vw",
+  priority,
+}: DoctorPortraitProps) {
   const [failed, setFailed] = useState(!src || src.includes("placeholder"));
 
   if (failed) {
@@ -37,8 +45,8 @@ export default function DoctorPortrait({ src, alt, className = "", priority }: D
         src={src}
         alt={alt}
         fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, 50vw"
+        className={imgClassName}
+        sizes={sizes}
         priority={priority}
         onError={() => setFailed(true)}
       />
