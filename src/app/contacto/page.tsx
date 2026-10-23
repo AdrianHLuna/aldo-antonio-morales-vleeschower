@@ -37,7 +37,14 @@ export default function ContactPage() {
         </header>
       </div>
 
-      <MapFacade address={`${doctor.address}, ${doctor.city}, ${doctor.state}`} whatsapp={doctor.whatsapp} />
+      <MapFacade
+        address={doctor.address}
+        city={doctor.city}
+        state={doctor.state}
+        geo={doctor.geo}
+        googleMapsUrl={doctor.googleMapsUrl}
+        whatsapp={doctor.whatsapp}
+      />
 
       <div className="mx-auto mt-12 max-w-5xl px-6">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">

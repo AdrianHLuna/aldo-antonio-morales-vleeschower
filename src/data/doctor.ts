@@ -32,8 +32,11 @@ export const doctor: DoctorProfile = {
   city: "Tuxtla Gutiérrez",
   state: "Chiapas",
   country: "México",
-  googleMapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=13a+Avenida+Norte+Poniente+175%2C+Colonia+Centro%2C+Tuxtla+Guti%C3%A9rrez%2C+Chiapas",
+  geo: {
+    latitude: 16.76805,
+    longitude: -93.11465,
+  },
+  googleMapsUrl: "https://www.google.com/maps?q=16.76805,-93.11465",
   consultationPrice: 700,
   paymentMethods: ["Efectivo", "Transferencia", "Tarjeta de crédito"],
   insurances: ["No se aceptan seguros de gastos médicos mayores"],
