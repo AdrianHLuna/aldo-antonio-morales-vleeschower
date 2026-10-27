@@ -120,7 +120,7 @@ export default function HomePage() {
                 {/* Marco de Retrato con soporte vertical 3:4 */}
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white shadow-[var(--shadow-warm-lg)]">
                   <DoctorPortrait
-                    src={doctor.heroPhoto || "/hero.jpeg"}
+                    src={doctor.heroPhoto || "/hero.jpg"}
                     alt={`${doctor.title} ${doctor.name} - ${doctor.specialistTitle || doctor.specialty}`}
                     className="h-full w-full"
                     imgClassName="object-cover object-[center_top]"
