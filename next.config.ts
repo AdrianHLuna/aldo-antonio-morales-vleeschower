@@ -3,15 +3,33 @@ import type { NextConfig } from "next";
 // Security headers — AISO v3.1 §8.1. X-XSS-Protection deprecado, sustituido por CSP.
 // 'unsafe-eval' solo en dev: Turbopack/React Fast Refresh usan eval() para HMR;
 // React nunca usa eval() en producción, así que la build de producción no lo necesita.
-// Dominios de Google ampliados 2026-10-16 (encontrado en dr-gregorio-arcos):
-// GTM's "Container quality" diagnostic ("CSP blocks tag resources") falla
-// si el CSP no permite tagassistant.google.com y los dominios de Ads/
-// DoubleClick — Tag Assistant no puede conectarse al sitio para depurar el
-// contenedor. Ver AGENTS.md §8 para el detalle completo.
+// Dominios completos de Google Tag Manager, Google Analytics, Google Ads y Tag Assistant
+// requeridos por el diagnóstico "Calidad de Contenedor" de GTM y por Google Ads
+// (actualizado 2026-11-13: la versión anterior, de dr-gregorio-arcos 2026-10-16,
+// seguía bloqueando recursos reales de Google Ads — p.ej. googlesyndication.com —
+// y solo se corrigió por completo en dra-maria-argelia-eng-luna sin regresar el
+// fix al template; ver AGENTS.md §8).
+const googleScriptDomains = [
+  "https://www.googletagmanager.com",
+  "https://*.googletagmanager.com",
+  "https://tagmanager.google.com",
+  "https://www.google-analytics.com",
+  "https://*.google-analytics.com",
+  "https://www.googleadservices.com",
+  "https://*.googleadservices.com",
+  "https://googleads.g.doubleclick.net",
+  "https://*.doubleclick.net",
+  "https://www.google.com",
+  "https://*.google.com",
+  "https://*.googlesyndication.com",
+  "https://adservice.google.com",
+  "https://tagassistant.google.com",
+].join(" ");
+
 const scriptSrc =
   process.env.NODE_ENV === "production"
-    ? "'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://tagassistant.google.com"
-    : "'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://tagassistant.google.com";
+    ? `'self' 'unsafe-inline' ${googleScriptDomains}`
+    : `'self' 'unsafe-inline' 'unsafe-eval' ${googleScriptDomains}`;
 
 const securityHeaders = [
   {
@@ -45,7 +63,7 @@ const securityHeaders = [
   {
     key: "Content-Security-Policy",
     value:
-      `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.googletagmanager.com https://www.google.com https://*.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://stats.g.doubleclick.net https://tagassistant.google.com; frame-src https://www.googletagmanager.com https://www.google.com https://www.youtube-nocookie.com https://bid.g.doubleclick.net https://td.doubleclick.net https://tagassistant.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://tagassistant.google.com`,
+      `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://tagassistant.google.com https://fonts.googleapis.com; img-src 'self' data: blob: https: https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.googleadservices.com https://*.doubleclick.net https://*.gstatic.com https://*.googlesyndication.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.googletagmanager.com https://*.google.com https://www.google.com https://*.googleadservices.com https://www.googleadservices.com https://*.doubleclick.net https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://*.googlesyndication.com https://adservice.google.com https://tagassistant.google.com; frame-src 'self' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google.com https://*.google.com https://www.youtube-nocookie.com https://*.doubleclick.net https://bid.g.doubleclick.net https://td.doubleclick.net https://googleads.g.doubleclick.net https://tagassistant.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://tagassistant.google.com`,
   },
 ];
 

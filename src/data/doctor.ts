@@ -36,7 +36,7 @@ export const doctor: DoctorProfile = {
     latitude: 16.76805,
     longitude: -93.11465,
   },
-  googleMapsUrl: "https://www.google.com/maps?q=16.76805,-93.11465",
+  googleMapsUrl: "https://g.page/r/CVBZ0M7JHoBsEBM/",
   consultationPrice: 700,
   paymentMethods: ["Efectivo", "Transferencia", "Tarjeta de crédito"],
   insurances: ["No se aceptan seguros de gastos médicos mayores"],
@@ -64,5 +64,8 @@ export const doctor: DoctorProfile = {
     { degree: "Especialidad en Medicina Interna", institution: "Universidad Autónoma de Chiapas (UNACH)" },
     { degree: "Subespecialidad en Geriatría", institution: "Universidad Nacional Autónoma de México (UNAM)" },
   ],
-  sameAs: ["https://www.facebook.com/geriatratuxtla/"],
+  sameAs: [
+    "https://www.facebook.com/geriatratuxtla/",
+    "https://g.page/r/CVBZ0M7JHoBsEBM/",
+  ],
 };
