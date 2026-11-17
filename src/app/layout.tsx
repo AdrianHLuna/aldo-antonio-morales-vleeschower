@@ -26,20 +26,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-MX" className={`${montserrat.variable} ${ebGaramond.variable}`}>
       <head>
-        {/* Consent Mode — DEBE ir antes de cargar GTM/gtag (AGENTS.md §8).
-            Sin este bloque, GTM/GA4/Ads empiezan a enviar datos de inmediato
-            al cargar la página, sin esperar el clic de "Aceptar" en
-            CookieConsentBanner.tsx — contradice lo que /aviso-de-privacidad
-            promete por escrito. */}
+        {/* Consent Mode v2 — Regionalizado para evitar bloqueo de medición al 100% fuera del EEE */}
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+
+// 1. Por defecto para México y territorios fuera del Espacio Económico Europeo (EEE):
+gtag('consent', 'default', {
+  analytics_storage: 'granted',
+  ad_storage: 'granted',
+  ad_user_data: 'granted',
+  ad_personalization: 'granted'
+});
+
+// 2. Por defecto estricto para países del EEE, Reino Unido y Suiza (requerido por RGPD/DMA):
 gtag('consent', 'default', {
   analytics_storage: 'denied',
   ad_storage: 'denied',
   ad_user_data: 'denied',
   ad_personalization: 'denied',
+  region: ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'CH'],
   wait_for_update: 500
 });`,
           }}

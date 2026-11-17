@@ -37,6 +37,7 @@ export const doctor: DoctorProfile = {
     longitude: -93.11465,
   },
   googleMapsUrl: "https://g.page/r/CVBZ0M7JHoBsEBM/",
+  ga4Id: "G-7GR2KGHC0J",
   consultationPrice: 700,
   paymentMethods: ["Efectivo", "Transferencia", "Tarjeta de crédito"],
   insurances: ["No se aceptan seguros de gastos médicos mayores"],

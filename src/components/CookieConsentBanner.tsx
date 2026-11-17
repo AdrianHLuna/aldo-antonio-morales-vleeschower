@@ -40,7 +40,6 @@ export default function CookieConsentBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!doctor.ga4Id) return;
     let stored: string | null = null;
     try {
       stored = localStorage.getItem(STORAGE_KEY);
@@ -48,14 +47,14 @@ export default function CookieConsentBanner() {
       stored = null;
     }
     if (stored === "granted" || stored === "denied") {
-      applyConsent(stored);
+      applyConsent(stored as Choice);
       return;
     }
     const timer = setTimeout(() => setVisible(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
-  if (!doctor.ga4Id || !visible) return null;
+  if (!visible) return null;
 
   return (
     <div
